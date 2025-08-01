@@ -1,0 +1,244 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Virdesk</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="desk-container">
+    <section class="header">
+      <div id="greeting"></div>
+      <div id="clock"></div>
+      <div id="quote"></div>
+    </section>
+
+    <section class="tools">
+      <button onclick="openTool('todo')">📋 To-Do List</button>
+      <button onclick="openTool('pomodoro')">⏱️ Pomodoro Timer</button>
+      <button onclick="openTool('soundboard')">🎵 Sound Moodboard</button>
+      <button onclick="openTool('minigame')">🎇 Lantern Game</button>
+      <button onclick="openTool('plant')">🪴 Pet Plant</button>
+    </section>
+
+    <section class="tool-content">
+      <div id="todo" class="tool-panel hidden">
+        <h2>To-Do List</h2>
+        <input type="text" id="todo-input" placeholder="New Task..." />
+        <button onclick="addTodo()">Add</button>
+        <ul id="todo-list"></ul>
+      </div>
+
+      <div id="pomodoro" class="tool-panel hidden">
+        <h2>Pomodoro Timer</h2>
+        <div id="timer">25:00</div>
+        <button onclick="startPomodoro()">Start</button>
+        <button onclick="resetPomodoro()">Reset</button>
+        <button onclick="resetPomodoro()">Rest</button>
+      </div>
+
+      <div id="soundboard" class="tool-panel hidden">
+        <h2>Sound Moodboard</h2>
+        <button onclick="playSound('rain')">🌧 Rain</button>
+        <button onclick="playSound('forest')">🌲 Forest</button>
+        <button onclick="playSound('fire')">🔥 Campfire</button>
+      </div>
+
+      <div id="minigame" class="tool-panel hidden">
+        <h2>Floating Lantern</h2>
+        <input type="text" id="lantern-message" placeholder="Share your feeling..." />
+        <button onclick="releaseLantern()">Release Lantern</button>
+        <div class="sky" id="lantern-sky"></div>
+      </div>
+
+      <div id="plant" class="tool-panel hidden">
+        <h2>Your Pet Plant</h2>
+        <img id="plant-img" src="plant1.png" alt="Pet Plant" />
+        <p id="plant-status">Feed your plant by completing tasks!</p>
+      </div>
+    </section>
+  </main>
+
+  <audio id="rain" src="sounds/rain.mp3" loop></audio>
+  <audio id="forest" src="sounds/forest.mp3" loop></audio>
+  <audio id="fire" src="sounds/fire.mp3" loop></audio>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to top, #0f2027, #203a43, #2c5364);
+      color: #f0f0f0;
+    }
+    .desk-container {
+      padding: 1rem;
+      max-width: 960px;
+      margin: auto;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    #clock {
+      font-size: 2rem;
+      margin: 0.5rem 0;
+    }
+    .tools {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .tools button {
+      background: #304d63;
+      border: none;
+      padding: 0.6rem 1rem;
+      color: #fff;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    .tool-content {
+      background: rgba(255,255,255,0.05);
+      padding: 1rem;
+      border-radius: 1rem;
+    }
+    .tool-panel {
+      display: none;
+    }
+    .tool-panel:not(.hidden) {
+      display: block;
+    }
+    input[type="text"] {
+      padding: 0.5rem;
+      width: 70%;
+      margin: 0.5rem 0;
+      border-radius: 0.3rem;
+      border: none;
+    }
+    #lantern-sky {
+      position: relative;
+      height: 200px;
+      background: linear-gradient(to top, #000000, #1a1a40);
+      overflow: hidden;
+    }
+    .lantern {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 200, 100, 0.9);
+      color: #000;
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      animation: floatUp 5s linear forwards;
+    }
+    @keyframes floatUp {
+      0% { bottom: 0; opacity: 1; }
+      100% { bottom: 100%; opacity: 0; }
+    }
+  </style>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clock').textContent = time;
+    }
+
+    function updateGreeting() {
+      const hour = new Date().getHours();
+      const greeting = hour < 12 ? 'Good Morning 🌞' : hour < 18 ? 'Good Afternoon ☀️' : 'Good Evening 🌙';
+      document.getElementById('greeting').textContent = greeting;
+    }
+
+    function updateQuote() {
+      const quotes = [
+        "You got this!",
+        "Every step counts.",
+        "Stay focused, stay kind.",
+        "Progress is progress."
+      ];
+      const q = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById('quote').textContent = q;
+    }
+
+    function openTool(id) {
+      document.querySelectorAll('.tool-panel').forEach(panel => panel.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function addTodo() {
+      const input = document.getElementById('todo-input');
+      const text = input.value.trim();
+      if (!text) return;
+      const li = document.createElement('li');
+      li.textContent = text;
+      li.onclick = () => {
+        li.classList.toggle('done');
+        growPlant();
+      };
+      document.getElementById('todo-list').appendChild(li);
+      input.value = '';
+    }
+
+    let pomodoroInterval;
+    function startPomodoro() {
+      let minutes = 25, seconds = 0;
+      clearInterval(pomodoroInterval);
+      pomodoroInterval = setInterval(() => {
+        if (seconds === 0) {
+          if (minutes === 0) {
+            clearInterval(pomodoroInterval);
+            growPlant();
+            return;
+          }
+          minutes--;
+          seconds = 59;
+        } else {
+          seconds--;
+        }
+        document.getElementById('timer').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      }, 1000);
+    }
+
+    function resetPomodoro() {
+      clearInterval(pomodoroInterval);
+      document.getElementById('timer').textContent = '25:00';
+    }
+
+    function playSound(id) {
+      document.querySelectorAll('audio').forEach(a => a.pause());
+      const audio = document.getElementById(id);
+      audio.currentTime = 0;
+      audio.play();
+    }
+
+    function releaseLantern() {
+      const msg = document.getElementById('lantern-message').value.trim();
+      if (!msg) return;
+      const lantern = document.createElement('div');
+      lantern.className = 'lantern';
+      lantern.textContent = msg;
+      document.getElementById('lantern-sky').appendChild(lantern);
+      setTimeout(() => lantern.remove(), 5000);
+      document.getElementById('lantern-message').value = '';
+    }
+
+    let growthStage = 1;
+    function growPlant() {
+      if (growthStage >= 5) return;
+      growthStage++;
+      document.getElementById('plant-img').src = `plant${growthStage}.png`;
+    }
+
+    updateClock();
+    updateGreeting();
+    updateQuote();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
