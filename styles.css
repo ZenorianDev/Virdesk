@@ -1,0 +1,74 @@
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to top, #0f2027, #203a43, #2c5364);
+      color: #f0f0f0;
+    }
+    .desk-container {
+      padding: 1rem;
+      max-width: 960px;
+      margin: auto;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    #clock {
+      font-size: 2rem;
+      margin: 0.5rem 0;
+    }
+    .tools {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .tools button {
+      background: #304d63;
+      border: none;
+      padding: 0.6rem 1rem;
+      color: #fff;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    .tool-content {
+      background: rgba(255,255,255,0.05);
+      padding: 1rem;
+      border-radius: 1rem;
+    }
+    .tool-panel {
+      display: none;
+    }
+    .tool-panel:not(.hidden) {
+      display: block;
+    }
+    input[type="text"] {
+      padding: 0.5rem;
+      width: 70%;
+      margin: 0.5rem 0;
+      border-radius: 0.3rem;
+      border: none;
+    }
+    #lantern-sky {
+      position: relative;
+      height: 200px;
+      background: linear-gradient(to top, #000000, #1a1a40);
+      overflow: hidden;
+    }
+    .lantern {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 200, 100, 0.9);
+      color: #000;
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      animation: floatUp 5s linear forwards;
+    }
+    @keyframes floatUp {
+      0% { bottom: 0; opacity: 1; }
+      100% { bottom: 100%; opacity: 0; }
+    }
