@@ -9,61 +9,59 @@
 </head>
 <body>
   <main class="desk-container">
+    <div id="quote">“Life begins at the end of your comfort zone”</div>
+    <div id="logo">Virdesk</div>
     <section class="header">
-      <div id="greeting"></div>
-      <div id="clock"></div>
-      <div id="quote"></div>
+      <div id="greeting">Good morning!</div>
+      <div id="clock">00:00</div>
+      <div id="day-message">Let’s set the tone for the week.</div>
     </section>
 
-    <section class="tools">
-      <button onclick="openTool('todo')">📋 To-Do List</button>
-      <button onclick="openTool('pomodoro')">⏱️ Pomodoro Timer</button>
-      <button onclick="openTool('soundboard')">🎵 Sound Moodboard</button>
-      <button onclick="openTool('minigame')">🎇 Lantern Game</button>
-      <button onclick="openTool('plant')">🪴 Pet Plant</button>
+    <nav class="tools-bar">
+      <button onclick="showPanel('todo-panel')">📋</button>
+      <button onclick="showPanel('pomodoro-panel')">⏱️</button>
+      <button onclick="showPanel('soundboard-panel')">🎵</button>
+      <button onclick="showPanel('minigame-panel')">🎇</button>
+      <button onclick="showPanel('plant-panel')">🪴</button>
+    </nav>
+
+    <section class="tool-content" id="todo-panel">
+      <h2>To-Do List</h2>
+      <input type="text" id="todo-input" placeholder="New Task..." />
+      <span onclick="addTodo()" class="addTodo">Add</span>
+      <ul id="todo-list"></ul>
     </section>
 
-    <section class="tool-content">
-      <div id="todo" class="tool-panel hidden">
-        <h2>To-Do List</h2>
-        <input type="text" id="todo-input" placeholder="New Task..." />
-        <button onclick="addTodo()">Add</button>
-        <ul id="todo-list"></ul>
-      </div>
+    <section class="tool-content" id="pomodoro-panel">
+      <h2>Pomodoro Timer</h2>
+      <div id="timer">25:00</div>
+      <button onclick="startPomodoro()">Start</button>
+      <button onclick="resetPomodoro()">Reset</button>
+    </section>
 
-      <div id="pomodoro" class="tool-panel hidden">
-        <h2>Pomodoro Timer</h2>
-        <div id="timer">25:00</div>
-        <button onclick="startPomodoro()">Start</button>
-        <button onclick="resetPomodoro()">Reset</button>
-        <button onclick="resetPomodoro()">Rest</button>
-      </div>
+    <section class="tool-content" id="soundboard-panel">
+      <h2>Sound Moodboard</h2>
+      <button onclick="playSound('rain')">🌧 Rain</button>
+      <button onclick="playSound('forest')">🌲 Forest</button>
+      <button onclick="playSound('fire')">🔥 Campfire</button>
+    </section>
 
-      <div id="soundboard" class="tool-panel hidden">
-        <h2>Sound Moodboard</h2>
-        <button onclick="playSound('rain')">🌧 Rain</button>
-        <button onclick="playSound('forest')">🌲 Forest</button>
-        <button onclick="playSound('fire')">🔥 Campfire</button>
-      </div>
+    <section class="tool-content" id="minigame-panel">
+      <h2>Floating Lantern</h2>
+      <input type="text" id="lantern-message" placeholder="Share your feeling..." />
+      <button onclick="releaseLantern()">Release Lantern</button>
+      <div id="lantern-sky"></div>
+    </section>
 
-      <div id="minigame" class="tool-panel hidden">
-        <h2>Floating Lantern</h2>
-        <input type="text" id="lantern-message" placeholder="Share your feeling..." />
-        <button onclick="releaseLantern()">Release Lantern</button>
-        <div class="sky" id="lantern-sky"></div>
-      </div>
-
-      <div id="plant" class="tool-panel hidden">
-        <h2>Your Pet Plant</h2>
-        <img id="plant-img" src="plant1.png" alt="Pet Plant" />
-        <p id="plant-status">Feed your plant by completing tasks!</p>
-      </div>
+    <section class="tool-content" id="plant-panel">
+      <h2>Your Pet Plant</h2>
+      <img id="plant-img" src="plant1.png" alt="Pet Plant" />
+      <p id="plant-status">Feed your plant by completing tasks!</p>
     </section>
   </main>
 
   <audio id="rain" src="sounds/rain.mp3" loop></audio>
   <audio id="forest" src="sounds/forest.mp3" loop></audio>
   <audio id="fire" src="sounds/fire.mp3" loop></audio>
-
 </body>
 </html>

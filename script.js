@@ -1,31 +1,29 @@
+function updateClock() {
+  const now = new Date();
+  const h = now.getHours().toString().padStart(2, '0');
+  const m = now.getMinutes().toString().padStart(2, '0');
+  document.getElementById('clock').textContent = `${h}:${m}`;
+}
 
-    function updateClock() {
-      const now = new Date();
-      const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      document.getElementById('clock').textContent = time;
-    }
+    setInterval(updateClock, 1000);
+    updateClock();
 
     function updateGreeting() {
       const hour = new Date().getHours();
-      const greeting = hour < 12 ? 'Good Morning 🌞' : hour < 18 ? 'Good Afternoon ☀️' : 'Good Evening 🌙';
+      const greeting = hour < 12 ? 'Good morning!' : hour < 18 ? 'Good afternoon!' : 'Good evening!';
       document.getElementById('greeting').textContent = greeting;
     }
+    updateGreeting();
 
-    function updateQuote() {
-      const quotes = [
-        "You got this!",
-        "Every step counts.",
-        "Stay focused, stay kind.",
-        "Progress is progress."
-      ];
-      const q = quotes[Math.floor(Math.random() * quotes.length)];
-      document.getElementById('quote').textContent = q;
-    }
-
-    function openTool(id) {
-      document.querySelectorAll('.tool-panel').forEach(panel => panel.classList.add('hidden'));
-      document.getElementById(id).classList.remove('hidden');
-    }
+function showPanel(id) {
+  // Hide all panels
+  document.querySelectorAll('.tool-content').forEach(section => {
+    section.style.display = 'none';
+  });
+  // Show the selected panel
+  const section = document.getElementById(id);
+  if (section) section.style.display = 'block';
+}
 
     function addTodo() {
       const input = document.getElementById('todo-input');
@@ -33,36 +31,30 @@
       if (!text) return;
       const li = document.createElement('li');
       li.textContent = text;
-      li.onclick = () => {
-        li.classList.toggle('done');
-        growPlant();
-      };
+      li.onclick = () => li.classList.toggle('done');
       document.getElementById('todo-list').appendChild(li);
       input.value = '';
     }
 
-    let pomodoroInterval;
+    let interval;
     function startPomodoro() {
-      let minutes = 25, seconds = 0;
-      clearInterval(pomodoroInterval);
-      pomodoroInterval = setInterval(() => {
-        if (seconds === 0) {
-          if (minutes === 0) {
-            clearInterval(pomodoroInterval);
-            growPlant();
+      let mins = 25, secs = 0;
+      clearInterval(interval);
+      interval = setInterval(() => {
+        if (secs === 0) {
+          if (mins === 0) {
+            clearInterval(interval);
             return;
           }
-          minutes--;
-          seconds = 59;
-        } else {
-          seconds--;
-        }
-        document.getElementById('timer').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+          mins--;
+          secs = 59;
+        } else secs--;
+        document.getElementById('timer').textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
       }, 1000);
     }
 
     function resetPomodoro() {
-      clearInterval(pomodoroInterval);
+      clearInterval(interval);
       document.getElementById('timer').textContent = '25:00';
     }
 
@@ -83,15 +75,3 @@
       setTimeout(() => lantern.remove(), 5000);
       document.getElementById('lantern-message').value = '';
     }
-
-    let growthStage = 1;
-    function growPlant() {
-      if (growthStage >= 5) return;
-      growthStage++;
-      document.getElementById('plant-img').src = `plant${growthStage}.png`;
-    }
-
-    updateClock();
-    updateGreeting();
-    updateQuote();
-    setInterval(updateClock, 1000);
