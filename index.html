@@ -6,62 +6,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Virdesk</title>
   <link rel="stylesheet" href="styles.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
-  <main class="desk-container">
-    <div id="quote">“Life begins at the end of your comfort zone”</div>
-    <div id="logo">Virdesk</div>
-    <section class="header">
-      <div id="greeting">Good morning!</div>
-      <div id="clock">00:00</div>
-      <div id="day-message">Let’s set the tone for the week.</div>
-    </section>
+  <header>
+    <div class="logo">Virdesk</div>
+    <div class="plant">🌱</div>
+  </header>
 
-    <nav class="tools-bar">
-      <button onclick="showPanel('todo-panel')">📋</button>
-      <button onclick="showPanel('pomodoro-panel')">⏱️</button>
-      <button onclick="showPanel('soundboard-panel')">🎵</button>
-      <button onclick="showPanel('minigame-panel')">🎇</button>
-      <button onclick="showPanel('plant-panel')">🪴</button>
-    </nav>
+  <section id="home" class="tool-content active">
+    <div id="greeting" style="text-align:center; font-size: 1.5rem;">Good morning!</div>
+    <div id="clock" style="text-align:center; font-size: 4rem; font-weight: bold;">00:00</div>
+    <div id="day-message" style="text-align:center;">Let’s set the tone for the week.</div>
+  </section>
 
-    <section class="tool-content" id="todo-panel">
-      <h2>To-Do List</h2>
-      <input type="text" id="todo-input" placeholder="New Task..." />
-      <span onclick="addTodo()" class="addTodo">Add</span>
-      <ul id="todo-list"></ul>
-    </section>
+  <section class="center-controls">
+    <button onclick="showPanel('home')">🏠 Home</button>
+    <button onclick="showPanel('pomodoro-panel')">⏱️ Pomodoro</button>
+  </section>
 
-    <section class="tool-content" id="pomodoro-panel">
-      <h2>Pomodoro Timer</h2>
-      <div id="timer">25:00</div>
-      <button onclick="startPomodoro()">Start</button>
-      <button onclick="resetPomodoro()">Reset</button>
-    </section>
+  <section class="tool-content" id="pomodoro-panel">
+    <h2>Pomodoro + To-Do</h2>
+    <div id="timer" style="font-size: 2rem;">25:00</div>
+    <button onclick="startPomodoro()">Start</button>
+    <button onclick="resetPomodoro()">Reset</button>
+    <input type="text" id="todo-input" placeholder="New Task..." />
+    <button onclick="addTodo()">Add</button>
+    <ul id="todo-list"></ul>
+  </section>
 
-    <section class="tool-content" id="soundboard-panel">
-      <h2>Sound Moodboard</h2>
-      <button onclick="playSound('rain')">🌧 Rain</button>
-      <button onclick="playSound('forest')">🌲 Forest</button>
-      <button onclick="playSound('fire')">🔥 Campfire</button>
-    </section>
+  <div class="bottom-left">
+    <button onclick="showPanel('sound-board')">🎵</button>
+  </div>
 
-    <section class="tool-content" id="minigame-panel">
-      <h2>Floating Lantern</h2>
-      <input type="text" id="lantern-message" placeholder="Share your feeling..." />
-      <button onclick="releaseLantern()">Release Lantern</button>
-      <div id="lantern-sky"></div>
-    </section>
+<div class="bottom-right">
+  <div id="quote">“Life begins at the end of your comfort zone”</div>
+  <div class="right-buttons">
+    <button onclick="showPanel('minigame-panel')">🎇 Lantern</button>
+    <button onclick="showPanel('settings-panel')">⚙️ Settings</button>
+    <button onclick="toggleFullScreen()">🖥 Fullscreen</button>
+  </div>
+</div>
 
-    <section class="tool-content" id="plant-panel">
-      <h2>Your Pet Plant</h2>
-      <img id="plant-img" src="plant1.png" alt="Pet Plant" />
-      <p id="plant-status">Feed your plant by completing tasks!</p>
-    </section>
-  </main>
+  <section class="tool-content" id="minigame-panel">
+    <h2>Floating Lantern</h2>
+    <input type="text" id="lantern-message" placeholder="Share your feeling..." />
+    <button onclick="releaseLantern()">Release Lantern</button>
+    <div id="lantern-sky" style="height: 200px; background: linear-gradient(to top, #000, #333); overflow: hidden; position: relative; border-radius: 1rem;"></div>
+  </section>
 
   <audio id="rain" src="sounds/rain.mp3" loop></audio>
   <audio id="forest" src="sounds/forest.mp3" loop></audio>
   <audio id="fire" src="sounds/fire.mp3" loop></audio>
+
 </body>
 </html>
