@@ -1,0 +1,57 @@
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('/images/deskwall.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            overflow: hidden;
+        }
+        .container {
+            display: grid;
+            grid-template-areas:
+                "logo plant"
+                "greeting greeting"
+                "nav nav"
+                "music quotes"
+                "lantern fullscreen";
+            gap: 10px;
+            padding: 20px;
+            height: 100vh;
+        }
+        .logo { 
+          grid-area: logo; 
+          text-align: left; 
+          font-size: 24px; 
+        }
+        .plant { 
+          grid-area: plant; 
+          text-align: right; 
+        }
+        .greeting { 
+          grid-area: greeting; 
+          text-align: center; 
+          font-size: 28px; 
+        }
+        .nav { 
+          grid-area: nav; 
+          display: flex; 
+          justify-content: center; 
+          gap: 20px; 
+        }
+        .music { 
+          grid-area: music; 
+          text-align: left; 
+        }
+        .quotes { 
+          grid-area: quotes; 
+          text-align: right; 
+        }
+        .lantern { 
+          grid-area: lantern; 
+          text-align: left; 
+        }
+        .fullscreen { grid-area: fullscreen; text-align: right; }
+        button { padding: 10px 20px; cursor: pointer; }
+        #clock { font-size: 48px; }
+        #plantGrowth { height: 50px; background: green; transition: height 0.5s; }
