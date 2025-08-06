@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <div class="logo">Virdesk</div>
-        <div class="plant">
+        <div class="plant" onclick="toggleModal()">
             <div id="plantGrowth">🌱</div>
         </div>
         <div class="greeting">
@@ -36,6 +36,15 @@
         </div>
         <div class="fullscreen">
             <button onclick="toggleFullScreen()">⬜</button>
+        </div>
+    </div>
+    <div id="plantModal" class="modal">
+        <div class="modal-content">
+            <h2>Plant Growth</h2>
+            <p>Add a task to grow your plant!</p>
+            <input type="text" id="taskInput" placeholder="Enter a task">
+            <button onclick="addTaskAndClose()">Add Task</button>
+            <button onclick="toggleModal()">Close</button>
         </div>
     </div>
 </body>
