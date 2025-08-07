@@ -1,5 +1,23 @@
-let tasks = [];
-let plantHeight = 50;
+let progress = 0;
+
+function updateLoading() {
+    const progressBar = document.getElementById('progress');
+    progress += 1;
+    progressBar.style.width = `${progress}%`;
+    if (progress >= 100) {
+        clearInterval(loadingInterval);
+        document.getElementById('startButton').classList.remove('hidden');
+        document.getElementById('startButton').focus();
+    }
+}
+
+const loadingInterval = setInterval(updateLoading, 30);
+
+document.getElementById('startButton').addEventListener('click', () => {
+    document.getElementById('landingPage').classList.add('hidden');
+    document.getElementById('dashboard').classList.remove('hidden');
+    updateClock();
+});
 
 function updateClock() {
     const now = new Date();
@@ -17,10 +35,9 @@ function playMusic() {
 }
 
 function releaseLantern() {
-    const feelings = document.getElementById('lanternFeelings').value;
+    const feelings = prompt("Write your feelings for the lantern:");
     if (feelings) {
         alert(`Lantern released with feelings: ${feelings}`);
-        document.getElementById('lanternFeelings').value = '';
     }
 }
 
@@ -44,29 +61,10 @@ function toggleModal() {
 function addTaskAndClose() {
     const task = document.getElementById('taskInput').value;
     if (task) {
-        tasks.push(task);
-        plantHeight += 20;
-        document.getElementById('plantGrowth').style.height = `${plantHeight}px`;
         alert(`Task added: ${task}`);
         document.getElementById('taskInput').value = '';
         toggleModal();
     }
-}
-
-// Simple Pomodoro timer
-let pomodoroTime = 25 * 60;
-function startPomodoro() {
-    let timeLeft = pomodoroTime;
-    const timer = setInterval(() => {
-        if (timeLeft > 0) {
-            timeLeft--;
-            alert(`Time left: ${Math.floor(timeLeft / 60)}:${timeLeft % 60}`);
-        } else {
-            clearInterval(timer);
-            alert("Pomodoro finished!");
-            addTaskAndClose();
-        }
-    }, 1000);
 }
 
 // Initial call

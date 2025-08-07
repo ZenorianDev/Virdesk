@@ -8,34 +8,40 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">Virdesk</div>
-        <div class="plant" onclick="toggleModal()">
-            <div id="plantGrowth">🌱</div>
+    <div id="landingPage" class="page">
+        <h1>Virdesk</h1>
+        <div id="loadingBar" class="loading-bar">
+            <div id="progress"></div>
         </div>
-        <div class="greeting">
+        <button id="startButton" class="hidden">Start</button>
+    </div>
+    <div id="dashboard" class="page hidden">
+        <div class="top-bar">
+            <div class="brand">Virdesk</div>
+            <div class="plant" onclick="toggleModal()">🌱</div>
+        </div>
+        <div class="center-content">
             <p>Good morning, Jessica!</p>
-            <div id="clock">9:24</div>
-            <p>Let's set the tone for the week.</p>
+            <div id="clock" class="clock">04:06</div>
+            <textarea id="notes" placeholder="Add your notes or reminders..."></textarea>
         </div>
         <div class="nav">
-            <button onclick="showSection('rest')">☁️</button>
             <button onclick="showSection('home')">🏠</button>
             <button onclick="showSection('pomodoro')">⏳</button>
+            <button onclick="showSection('rest')">☁️</button>
         </div>
-        <div class="music">
-            <button onclick="playMusic()">Play Ambient Music</button>
-            <audio id="ambientMusic" src="Lofi Girl finally stops studying.mp3"></audio>
-        </div>
-        <div class="quotes">
-            <p>"Life begins at the end of your comfort zone"</p>
-        </div>
-        <div class="lantern">
-            <input type="text" id="lanternFeelings" placeholder="Write your feelings">
-            <button onclick="releaseLantern()">🏮</button>
-        </div>
-        <div class="fullscreen">
-            <button onclick="toggleFullScreen()">⬜</button>
+        <div class="control-bar">
+            <div class="music">
+                <button onclick="playMusic()">▶️</button>
+                <audio id="ambientMusic" src="Lofi Girl finally stops studying.mp3"></audio>
+            </div>
+            <div class="quote">
+                <p>"Sometimes the smallest step in the right direction ends up being the biggest step of your life."</p>
+            </div>
+            <div class="actions">
+                <button onclick="releaseLantern()">🏮</button>
+                <button onclick="toggleFullScreen()">⬜</button>
+            </div>
         </div>
     </div>
     <div id="plantModal" class="modal">
