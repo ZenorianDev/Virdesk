@@ -61,13 +61,14 @@ body {
 #dashboard {
     background: linear-gradient(45deg, #6B46C1, #D53F8C);
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .top-bar {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 10px;
+    padding: 10px 20px;
 }
 
 .brand { font-size: 24px; }
@@ -78,11 +79,20 @@ body {
     margin: 20px 0;
 }
 
-.clock { font-size: 48px; font-weight: bold; margin: 10px 0; }
+.center-content p:first-child { 
+    font-size: 24px; margin: 0; 
+}
+.clock { 
+    font-size: 48px; font-weight: bold; margin: 10px 0; 
+}
+.center-content p:nth-child(3) { 
+    font-size: 18px; margin: 0; 
+}
 #notes {
     width: 400px;
     height: 100px;
     padding: 10px;
+    margin-top: 10px;
     border: none;
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.1);
@@ -112,6 +122,7 @@ button {
     width: 100%;
     position: absolute;
     bottom: 20px;
+    padding: 0 20px;
 }
 
 .music, .quote, .actions {
@@ -120,4 +131,39 @@ button {
     gap: 10px;
 }
 
-.quote p { font-style: italic; }
+.music button { 
+    border: none; 
+    background: none; 
+    font-size: 20px; 
+}
+.quote p { 
+    font-style: italic; 
+    font-size: 14px; 
+}
+.actions button { 
+    border: none; 
+    background: none; 
+    font-size: 20px; 
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #2d2d2d;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+}
+
+.modal.active { display: flex; }
