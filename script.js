@@ -1,33 +1,32 @@
-let progress = 0;
+function startLoading() {
+    const loader = document.getElementById('loader');
+    const startBtn = document.getElementById('startBtn');
 
-function updateLoading() {
-    const progressBar = document.getElementById('progress');
-    progress += 1;
-    progressBar.style.width = `${progress}%`;
-    if (progress >= 100) {
-        clearInterval(loadingInterval);
-        document.getElementById('startButton').classList.remove('hidden');
-        document.getElementById('startButton').focus();
-    }
+    // Show loader and hide start button initially
+    startBtn.classList.add('hidden');
+    loader.style.visibility = 'visible';
+
+    // Simulate loading for 3 seconds, then show start button
+    setTimeout(() => {
+        loader.style.visibility = 'hidden';
+        startBtn.classList.remove('hidden');
+    }, 3000);
 }
 
-const loadingInterval = setInterval(updateLoading, 30);
+// Start loading animation when page loads
+window.onload = startLoading;
 
-document.getElementById('startButton').addEventListener('click', () => {
+document.getElementById('startBtn').addEventListener('click', () => {
     document.getElementById('landingPage').classList.add('hidden');
-    document.getElementById('dashboard').classList.remove('hidden');
+    document.getElementById('home').classList.remove('hidden');
     updateClock();
 });
 
 function updateClock() {
     const now = new Date();
-    document.getElementById('clock').textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    document.getElementById('clock').textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
 }
 setInterval(updateClock, 1000);
-
-function showSection(section) {
-    alert(`Showing ${section} section`);
-}
 
 function playMusic() {
     const audio = document.getElementById('ambientMusic');
