@@ -4,11 +4,11 @@ function startLoading() {
 
     // Show loader and hide start button initially
     startBtn.classList.add('hidden');
-    loader.style.visibility = 'visible';
+    loader.style.display = 'flex'; // or 'block', depending on your layout
 
     // Simulate loading for 3 seconds, then show start button
     setTimeout(() => {
-        loader.style.visibility = 'hidden';
+        loader.style.display = 'none'; // Removes it from layout
         startBtn.classList.remove('hidden');
     }, 3000);
 }
