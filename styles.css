@@ -95,12 +95,18 @@ body {
 }
 
 #home {
-    background: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%);
+    background: 
+        linear-gradient(to top, rgba(251, 194, 235, 0.6), rgba(166, 193, 238, 0.6)),
+        url('petals.gif');
+    background-size: auto; 
+    background-repeat: repeat;
+    background-position: center;
     display: flex;
     flex-direction: column;
     height: 100vh;
     box-sizing: border-box;
 }
+
 
 .top-bar {
     display: flex;
