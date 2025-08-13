@@ -46,23 +46,6 @@ body {
     margin-bottom: 20px;
 }
 
-#startBtn {
-    height: 60px;
-    width: 160px;
-    padding: 10px 20px;
-    font-family: 'Righteous', sans-serif;
-    font-size: 16px;
-    margin-top: 20px;
-    background: white;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-}
-
-#startBtn.hidden {
-    display: none;
-}
-
 .loader {
     display: flex;
     gap: 10px;
@@ -98,7 +81,7 @@ body {
     background: 
         linear-gradient(to top, rgba(251, 194, 235, 0.6), rgba(166, 193, 238, 0.6)),
         url('petals.gif');
-    background-size: auto; 
+    background-size: auto;
     background-repeat: repeat;
     background-position: center;
     display: flex;
@@ -107,17 +90,16 @@ body {
     box-sizing: border-box;
 }
 
-
 .top-bar {
     display: flex;
-    justify-content: space-between; 
-    align-items: center;            
+    justify-content: space-between;
+    align-items: center;
     padding: 20px 20px;
     width: 95%;
 }
 
 .center-container {
-    flex: 1; 
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -163,6 +145,12 @@ body {
     background-color: #444;
 }
 
+.quote {
+    text-align: center;
+    margin: 20px 0;
+    padding: 0 20px;
+}
+
 .control-bar {
     display: flex;
     justify-content: space-between;
@@ -171,7 +159,6 @@ body {
     padding: 0 20px 20px;
     box-sizing: border-box;
 }
-
 
 .music, .actions {
     display: flex;
@@ -201,7 +188,6 @@ button {
 }
 
 .music button { font-size: 20px; }
-.quote p { font-style: italic; font-size: 14px; }
 .actions button { font-size: 20px; }
 
 .modal {

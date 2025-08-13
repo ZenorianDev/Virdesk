@@ -1,32 +1,30 @@
 function startLoading() {
     const loader = document.getElementById('loader');
-    const startBtn = document.getElementById('startBtn');
 
-    // Show loader and hide start button initially
-    startBtn.classList.add('hidden');
-    loader.style.display = 'flex'; // or 'block', depending on your layout
+    // Show loader initially
+    loader.style.display = 'flex';
 
-    // Simulate loading for 3 seconds, then show start button
+    // Simulate loading for 3 seconds, then transition to home
     setTimeout(() => {
-        loader.style.display = 'none'; // Removes it from layout
-        startBtn.classList.remove('hidden');
+        loader.style.display = 'none';
+        document.getElementById('landingPage').classList.add('hidden');
+        document.getElementById('home').classList.remove('hidden');
+        updateClock();
     }, 3000);
 }
 
 // Start loading animation when page loads
 window.onload = startLoading;
 
-document.getElementById('startBtn').addEventListener('click', () => {
-    document.getElementById('landingPage').classList.add('hidden');
-    document.getElementById('home').classList.remove('hidden');
-    updateClock();
-});
-
 function updateClock() {
     const now = new Date();
     document.getElementById('clock').textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
 }
 setInterval(updateClock, 1000);
+
+function showSection(section) {
+    alert(`Showing ${section} section`);
+}
 
 function playMusic() {
     const audio = document.getElementById('ambientMusic');
