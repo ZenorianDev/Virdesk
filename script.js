@@ -2,11 +2,11 @@ function startLoading() {
     const loader = document.getElementById('loader');
 
     // Show loader initially
-    loader.style.display = 'flex';
+    loader.style.visibility = 'visible';
 
     // Simulate loading for 3 seconds, then transition to home
     setTimeout(() => {
-        loader.style.display = 'none';
+        loader.style.visibility = 'hidden';
         document.getElementById('landingPage').classList.add('hidden');
         document.getElementById('home').classList.remove('hidden');
         updateClock();

@@ -57,6 +57,7 @@ body {
 .dot {
     animation: bounce 1s infinite;
     display: inline-block;
+    color: #8B4513; /* Warm brown to match gradient */
 }
 
 .dot:nth-child(1) {
