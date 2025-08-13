@@ -80,9 +80,7 @@ body {
 }
 
 #home {
-    background: 
-        linear-gradient(to top, rgb(210, 153, 194) 0%, rgb(254, 249, 215) 100%),
-        url('petals.gif');
+    background: linear-gradient(to top, rgb(210, 153, 194) 0%, rgb(254, 249, 215) 100%);
     background-size: auto;
     background-repeat: repeat;
     background-position: center;

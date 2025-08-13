@@ -66,3 +66,7 @@ function addTaskAndClose() {
 
 // Initial call
 updateClock();
+
+// Note: Potential Permissions Policy violation (unload) may occur due to page transition.
+// If persistent, consider adding <meta http-equiv="Permissions-Policy" content="unload"> to <head>,
+// though this is a workaround and should be monitored.
