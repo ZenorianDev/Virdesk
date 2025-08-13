@@ -7,7 +7,7 @@ body {
 }
 
 .gradient-text {
-    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    background: linear-gradient(90deg, #8B4513, #D2B48C);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
@@ -38,7 +38,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%);
+    background: #F5E8C7;
 }
 
 #landingPage h1 {
@@ -51,6 +51,7 @@ body {
     gap: 10px;
     font-size: 40px;
     margin-top: 20px;
+    visibility: visible;
 }
 
 .dot {
@@ -79,11 +80,12 @@ body {
 
 #home {
     background: 
-        linear-gradient(to top, rgba(251, 194, 235, 0.6), rgba(166, 193, 238, 0.6)),
+        linear-gradient(to top, rgb(210, 153, 194) 0%, rgb(254, 249, 215) 100%),
         url('petals.gif');
     background-size: auto;
     background-repeat: repeat;
     background-position: center;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -110,39 +112,31 @@ body {
     text-align: center;
 }
 
-.center-content p:first-child {
-    font-size: 24px;
-    margin: 0;
-}
-.clock {
-    font-size: 48px;
-    font-weight: bold;
-    margin: 10px 0;
-}
-.center-content p:nth-child(3) {
-    font-size: 18px;
-    margin: 0;
-}
+.center-content p:first-child { font-size: 24px; margin: 0; color: #2d2d2d; }
+.clock { font-size: 48px; font-weight: bold; margin: 10px 0; color: #8B4513; }
+.center-content p:nth-child(3) { font-size: 18px; margin: 0; color: #2d2d2d; }
 
 .nav {
     display: flex;
-    background-color: #2d2d2d;
+    background-color: #D2B48C;
     border-radius: 50px;
     gap: 20px;
     padding: 10px 20px;
     margin-top: 20px;
 }
 .nav button {
-    color: white;
+    color: #2d2d2d;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 30px;
+    transition: color 0.3s, background-color 0.3s;
     border: none;
     background: none;
-    border-radius: 30px;
-    padding: 10px 15px;
-    transition: color 0.3s, background-color 0.3s;
 }
+
 .nav button:hover {
-    color: #00c6ff;
-    background-color: #444;
+    color: #8B4513;
+    background-color: #E0D4B3; /* Lighter ecru shade on hover */
 }
 
 .quote {
