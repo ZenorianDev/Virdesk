@@ -14,24 +14,6 @@ body {
 }
 
 .page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.5s;
-}
-
-.page.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-#landingPage {
     position: relative;
     height: 100vh;
     display: flex;
@@ -41,7 +23,21 @@ body {
     background: #F5E8C7;
 }
 
-#landingPage h1 {
+#landingPage .page {
+    background: #F5E8C7;
+}
+
+#home .page {
+    background: 
+        linear-gradient(to top, rgb(210, 153, 194) 0%, rgb(254, 249, 215) 100%),
+        url('petals.gif');
+    background-size: auto;
+    background-repeat: repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+h1 {
     font-size: 48px;
     margin-bottom: 20px;
 }
@@ -57,7 +53,7 @@ body {
 .dot {
     animation: bounce 1s infinite;
     display: inline-block;
-    color: #8B4513; /* Warm brown to match gradient */
+    color: #8B4513;
 }
 
 .dot:nth-child(1) {
@@ -77,18 +73,6 @@ body {
     40% {
         transform: translateY(-15px);
     }
-}
-
-#home {
-    background: linear-gradient(to top, rgb(210, 153, 194) 0%, rgb(254, 249, 215) 100%);
-    background-size: auto;
-    background-repeat: repeat;
-    background-position: center;
-    background-attachment: fixed;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    box-sizing: border-box;
 }
 
 .top-bar {
@@ -123,7 +107,7 @@ body {
     padding: 10px 20px;
     margin-top: 20px;
 }
-.nav button {
+.nav a {
     color: #2d2d2d;
     text-decoration: none;
     padding: 10px 15px;
@@ -132,10 +116,9 @@ body {
     border: none;
     background: none;
 }
-
-.nav button:hover {
+.nav a:hover {
     color: #8B4513;
-    background-color: #E0D4B3; /* Lighter ecru shade on hover */
+    background-color: #E0D4B3;
 }
 
 .quote {

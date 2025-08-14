@@ -3,59 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virdesk</title>
+    <title>Virdesk - Landing</title>
     <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div id="landingPage" class="page">
+    <div class="page">
         <h1 class="gradient-text">Virdesk</h1>
         <div class="loader" id="loader">
             <span class="dot">●</span>
             <span class="dot">●</span>
             <span class="dot">●</span>
-        </div>
-    </div>
-    <div id="home" class="page hidden">
-        <div class="top-bar">
-            <div class="brand gradient-text">Virdesk</div>
-            <div class="plant" onclick="toggleModal()"><i class="fa-solid fa-droplet"></i></div>
-        </div>
-        <div class="center-container">
-            <div class="center-content">
-                <p>Good evening!</p>
-                <div id="clock" class="clock">12:20 AM</div>
-                <p>Let's set up for tonight!</p>
-            </div>
-            <div class="nav">
-                <button onclick="showSection('rest')"><i class="fa-solid fa-cloud"></i></button>
-                <button onclick="showSection('home')"><i class="fa-solid fa-house"></i></button>
-                <button onclick="showSection('pomodoro')"><i class="fa-solid fa-clock"></i></button>
-            </div>
-        </div>
-        <div class="quote">
-            <p>"Sometimes the smallest step in the right direction ends up being the biggest step of your life."</p>
-        </div>
-        <div class="control-bar">
-            <div class="music">
-                <button onclick="playMusic()"><i class="fa-solid fa-music"></i></button>
-                <audio id="ambientMusic" src="Lofi Girl finally stops studying.mp3"></audio>
-            </div>
-            <div class="actions">
-                <button onclick="releaseLantern()"><i class="fa-solid fa-star"></i></button>
-                <button onclick="toggleFullScreen()"><i class="fa-solid fa-expand"></i></button>
-            </div>
-        </div>
-    </div>
-    <div id="plantModal" class="modal">
-        <div class="modal-content">
-            <h2>Plant Growth</h2>
-            <p>Add a task to grow your plant!</p>
-            <input type="text" id="taskInput" placeholder="Enter a task">
-            <button onclick="addTaskAndClose()">Add Task</button>
-            <button onclick="toggleModal()">Close</button>
         </div>
     </div>
 </body>
