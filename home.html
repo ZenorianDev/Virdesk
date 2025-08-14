@@ -1,54 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virdesk</title>
-    <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Virdesk — Home</title>
+  <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
-<body>
-    <div class="page">
-        <div class="top-bar">
-            <div class="brand gradient-text">Virdesk</div>
-            <div class="plant" onclick="toggleModal()"><i class="fa-solid fa-droplet"></i></div>
-        </div>
-        <div class="center-container">
-            <div class="center-content">
-                <p>Good afternoon!</p>
-                <div id="clock" class="clock">02:54 PM</div>
-                <p>Let's set up for today!</p>
-            </div>
-            <div class="nav">
-                <a href="rest.html"><i class="fa-solid fa-cloud"></i></a>
-                <a href="home.html"><i class="fa-solid fa-house"></i></a>
-                <a href="pomodoro.html"><i class="fa-solid fa-clock"></i></a>
-            </div>
-        </div>
-        <div class="quote">
-            <p>"Sometimes the smallest step in the right direction ends up being the biggest step of your life."</p>
-        </div>
-        <div class="control-bar">
-            <div class="music">
-                <button onclick="playMusic()"><i class="fa-solid fa-music"></i></button>
-                <audio id="ambientMusic" src="Lofi Girl finally stops studying.mp3"></audio>
-            </div>
-            <div class="actions">
-                <button onclick="releaseLantern()"><i class="fa-solid fa-star"></i></button>
-                <button onclick="toggleFullScreen()"><i class="fa-solid fa-expand"></i></button>
-            </div>
-        </div>
-        <div id="plantModal" class="modal">
-            <div class="modal-content">
-                <h2>Plant Growth</h2>
-                <p>Add a task to grow your plant!</p>
-                <input type="text" id="taskInput" placeholder="Enter a task">
-                <button onclick="addTaskAndClose()">Add Task</button>
-                <button onclick="toggleModal()">Close</button>
-            </div>
-        </div>
+<body id="home">
+  <div class="page">
+    <div class="top-bar">
+      <div class="brand gradient-text">Virdesk</div>
+      <button class="plant" type="button" aria-haspopup="dialog" aria-controls="plantModal" onclick="toggleModal()">
+        <i class="fa-solid fa-droplet"></i>
+      </button>
     </div>
+
+    <div class="center-container">
+      <div class="center-content">
+        <p>Good afternoon!</p>
+        <div id="clock" class="clock">--:-- --</div>
+        <p>Let's set up for today!</p>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="rest.html" title="Rest"><i class="fa-solid fa-cloud"></i></a>
+        <a href="home.html" title="Home" aria-current="page"><i class="fa-solid fa-house"></i></a>
+        <a href="pomodoro.html" title="Pomodoro"><i class="fa-solid fa-clock"></i></a>
+      </nav>
+    </div>
+
+    <div class="quote">
+      <p>"Sometimes the smallest step in the right direction ends up being the biggest step of your life."</p>
+    </div>
+
+    <div class="control-bar">
+      <div class="music">
+        <button id="musicBtn" type="button" onclick="toggleMusic()" aria-controls="ambientMusic" aria-pressed="false">
+          <i class="fa-solid fa-music"></i>
+        </button>
+        <!-- Keep the actual file name in your project folder; avoid spaces if possible -->
+        <audio id="ambientMusic" src="lofi-girl.mp3" preload="none"></audio>
+      </div>
+      <div class="actions">
+        <button type="button" onclick="releaseLantern()" title="Release lantern"><i class="fa-solid fa-star"></i></button>
+        <button type="button" onclick="toggleFullScreen()" title="Fullscreen"><i class="fa-solid fa-expand"></i></button>
+      </div>
+    </div>
+
+    <div id="plantModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="plantTitle" aria-describedby="plantDesc">
+      <div class="modal-content">
+        <h2 id="plantTitle">Plant Growth</h2>
+        <p id="plantDesc">Add a task to grow your plant!</p>
+        <input type="text" id="taskInput" placeholder="Enter a task" />
+        <div class="modal-actions">
+          <button type="button" onclick="addTaskAndClose()">Add Task</button>
+          <button type="button" onclick="toggleModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
