@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#closePlantPanel")?.addEventListener("click", () => $("#plantPanel").classList.remove("open"));
 
   // To-Do modal (openers)
-  ["#openTasksBtn","#openTasksBtn2","#openTasksBtn3","#openTasksBtn4","#openTasksBtn5"]
+  ["#openTasksBtn","#openTasksBtn2","#openTasksBtn3","#openTasksBtn4","#openTasksBtn5","#openTasksBtn6"]
     .forEach(id => $(id)?.addEventListener("click", openTodo));
   $("#closeTodoBtn")?.addEventListener("click", closeTodo);
 
@@ -69,12 +69,11 @@ function navigate(path) {
 }
 function handleRoute() {
   const path = (location.hash.replace(/^#/, "") || "/home");
-  // Show/hide sections
+
+  // Show/hide sections (only .page sections in main)
   $$(".page").forEach(sec => {
     const r = sec.getAttribute("data-route");
-    sec.classList.toggle("hidden", r !== path && !(path === "/home" && sec.id === "home"));
-    // Special case: landing only visible at "/"
-    if (sec.id === "landing") sec.classList.toggle("hidden", path !== "/");
+    sec.classList.toggle("hidden", r !== path);
   });
 
   // Update chip active states
@@ -83,7 +82,7 @@ function handleRoute() {
     ch.classList.toggle("active", href === `#${path}`);
   });
 
-  // Start appropriate timer state (but do not auto-start)
+  // Setup timer UI (don’t auto-start)
   if (path === "/pomodoro") setupTimer("pomodoro");
   else if (path === "/short") setupTimer("short");
   else if (path === "/long") setupTimer("long");
@@ -94,7 +93,7 @@ function startLoading() {
   const loader = $("#loader");
   if (!loader) return;
   loader.style.visibility = "visible";
-  setTimeout(() => { loader.style.visibility = "hidden"; navigate("/home"); }, 3000);
+  setTimeout(() => { loader.style.visibility = "hidden"; location.href = "home.html#%2Fhome"; }, 3000);
 }
 
 // ---------- Clock / Greeting ----------
@@ -190,13 +189,11 @@ function renderTodos() {
       <input type="checkbox" ${t.done ? "checked" : ""} aria-label="Mark done">
       <div class="todo-text">${escapeHtml(t.text)}</div>
       <div class="todo-actions">
-        <button class="pill small remove"><i class="fa-solid fa-trash"></i></button>
+        <button class="pill small remove" aria-label="Remove task"><i class="fa-solid fa-trash"></i></button>
       </div>
     `;
-    const cb = li.querySelector("input");
-    const rm = li.querySelector(".remove");
-    cb.addEventListener("change", () => toggleTodo(t.id));
-    rm.addEventListener("click", () => removeTodo(t.id));
+    li.querySelector("input").addEventListener("change", () => toggleTodo(t.id));
+    li.querySelector(".remove").addEventListener("click", () => removeTodo(t.id));
     ul.appendChild(li);
   });
 }
