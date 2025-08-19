@@ -3,7 +3,7 @@ const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 const pad2 = (n) => String(n).padStart(2, "0");
 
-// LocalStorage helpers
+// LocalStorage 
 const store = {
   get(key, fallback) {
     try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }

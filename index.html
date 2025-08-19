@@ -1,25 +1,131 @@
 <!DOCTYPE html>
-<html lang="en" id="landing">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Virdesk</title>
-  <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body id="landingPage">
-  <div class="page">
-    <h1 class="gradient-text">Virdesk</h1>
-    <div class="loader" id="loader" aria-live="polite">
-      <span class="dot">●</span>
-      <span class="dot">●</span>
-      <span class="dot">●</span>
+<body>
+  <!-- Landing Loader -->
+  <section id="landing" class="page" data-route="/">
+    <div id="loader" class="loader">
+      <h1>Virdesk</h1>
+      <div class="spinner"></div>
     </div>
-    <noscript>
-      <p style="margin-top:16px;">Please enable JavaScript to continue.</p>
-    </noscript>
+  </section>
+
+  <!-- Home Page -->
+  <section id="home" class="page" data-route="/home">
+    <header>
+      <h2 id="greeting"></h2>
+      <div id="clock"></div>
+      <div class="controls">
+        <button id="musicBtn" class="pill"><i class="fa-solid fa-music"></i></button>
+        <button id="fullscreenBtn" class="pill"><i class="fa-solid fa-expand"></i></button>
+        <button id="openPlantBtn" class="pill"><i class="fa-solid fa-seedling"></i></button>
+        <button id="openTasksBtn" class="pill"><i class="fa-solid fa-list-check"></i></button>
+        <button id="lanternBtn" class="pill"><i class="fa-solid fa-fire"></i></button>
+      </div>
+    </header>
+
+    <main>
+      <div class="timer-modes">
+        <a href="#/pomodoro" class="chip">Pomodoro</a>
+        <a href="#/short" class="chip">Short Break</a>
+        <a href="#/long" class="chip">Long Break</a>
+        <a href="#/rest" class="chip">Rest</a>
+      </div>
+    </main>
+  </section>
+
+  <!-- Pomodoro Page -->
+  <section id="pomodoro" class="page hidden" data-route="/pomodoro">
+    <h2>Pomodoro Timer</h2>
+    <div class="timer">
+      <div id="timerDisplay">25:00</div>
+      <div id="timerRing" class="ring"></div>
+      <div class="actions">
+        <button id="startPauseBtn" class="pill"><i class="fa-solid fa-play"></i><span>Start</span></button>
+        <button id="resetBtn" class="pill"><i class="fa-solid fa-rotate-right"></i></button>
+        <button id="openTasksBtn2" class="pill"><i class="fa-solid fa-list-check"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Short Break -->
+  <section id="short" class="page hidden" data-route="/short">
+    <h2>Short Break</h2>
+    <div class="timer">
+      <div id="shortDisplay">05:00</div>
+      <div id="shortRing" class="ring"></div>
+      <div class="actions">
+        <button id="shortStartPause" class="pill"><i class="fa-solid fa-play"></i><span>Start</span></button>
+        <button id="shortReset" class="pill"><i class="fa-solid fa-rotate-right"></i></button>
+        <button id="openTasksBtn3" class="pill"><i class="fa-solid fa-list-check"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Long Break -->
+  <section id="long" class="page hidden" data-route="/long">
+    <h2>Long Break</h2>
+    <div class="timer">
+      <div id="longDisplay">15:00</div>
+      <div id="longRing" class="ring"></div>
+      <div class="actions">
+        <button id="longStartPause" class="pill"><i class="fa-solid fa-play"></i><span>Start</span></button>
+        <button id="longReset" class="pill"><i class="fa-solid fa-rotate-right"></i></button>
+        <button id="openTasksBtn4" class="pill"><i class="fa-solid fa-list-check"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rest Page -->
+  <section id="rest" class="page hidden" data-route="/rest">
+    <h2>Rest Mode</h2>
+    <div id="restClock"></div>
+    <button id="openTasksBtn5" class="pill"><i class="fa-solid fa-list-check"></i></button>
+  </section>
+
+  <!-- Lantern Page -->
+  <section id="lantern" class="page hidden" data-route="/lantern">
+    <h2>Lantern</h2>
+    <p>Release your thoughts and feelings...</p>
+    <button id="lanternRelease" class="pill"><i class="fa-solid fa-fire"></i> Release Lantern</button>
+  </section>
+
+  <!-- Plant Panel -->
+  <div id="plantPanel" class="side-panel">
+    <button id="closePlantPanel" class="pill small"><i class="fa-solid fa-xmark"></i></button>
+    <h3>Your Plant</h3>
+    <img id="plantImg" src="img/plant-stage1.png" alt="Plant">
+    <div class="progress">
+      <div id="plantProgress" class="bar"></div>
+    </div>
+    <p>Completed tasks: <span id="completedCount">0</span></p>
   </div>
+
+  <!-- To-Do Modal -->
+  <div id="todoModal" class="modal">
+    <div class="modal-content">
+      <header>
+        <h3>Tasks</h3>
+        <button id="closeTodoBtn" class="pill small"><i class="fa-solid fa-xmark"></i></button>
+      </header>
+      <ul id="todoList"></ul>
+      <div class="todo-input">
+        <input id="todoText" type="text" placeholder="New task...">
+        <button id="addTodoBtn" class="pill"><i class="fa-solid fa-plus"></i></button>
+        <button id="clearDoneBtn" class="pill small"><i class="fa-solid fa-broom"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="ambientMusic" src="https://cdn.pixabay.com/audio/2021/08/04/audio_c4c8d3886b.mp3" loop></audio>
+
+  <script src="script.js"></script>
 </body>
 </html>
