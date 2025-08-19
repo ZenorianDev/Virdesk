@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="landing">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Virdesk</title>
   <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
@@ -9,113 +9,17 @@
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
-<body>
-  <!-- Landing Page -->
-  <section id="landing" class="page" data-route="/">
-    <div class="page">
-      <h1 class="gradient-text">Virdesk</h1>
-      <div class="loader" id="loader" aria-live="polite">
-        <span class="dot">●</span>
-        <span class="dot">●</span>
-        <span class="dot">●</span>
-      </div>
-      <noscript>
-        <p style="margin-top:16px;">Please enable JavaScript to continue.</p>
-      </noscript>
+<body id="landingPage">
+  <div class="page">
+    <h1 class="gradient-text">Virdesk</h1>
+    <div class="loader" id="loader" aria-live="polite">
+      <span class="dot">●</span>
+      <span class="dot">●</span>
+      <span class="dot">●</span>
     </div>
-  </section>
-
-  <!-- Home Page -->
-  <section id="home" class="page hidden" data-route="/home">
-    <div class="top-bar">
-      <div class="brand gradient-text">Virdesk</div>
-      <button class="plant" type="button" aria-haspopup="dialog" aria-controls="plantModal" onclick="toggleModal()">
-        <i class="fa-solid fa-droplet"></i>
-      </button>
-    </div>
-
-    <div class="center-container">
-      <div class="center-content">
-        <p>Good afternoon!</p>
-        <div id="clock" class="clock">--:-- --</div>
-        <p>Let's set up for today!</p>
-      </div>
-
-      <nav class="nav" aria-label="Primary">
-        <a href="#/rest" title="Rest"><i class="fa-solid fa-cloud"></i></a>
-        <a href="#/home" title="Home" aria-current="page"><i class="fa-solid fa-house"></i></a>
-        <a href="#/pomodoro" title="Pomodoro"><i class="fa-solid fa-clock"></i></a>
-      </nav>
-    </div>
-
-    <div class="quote">
-      <p>"Sometimes the smallest step in the right direction ends up being the biggest step of your life."</p>
-    </div>
-
-    <div class="control-bar">
-      <div class="music">
-        <button id="musicBtn" type="button" onclick="toggleMusic()" aria-controls="ambientMusic" aria-pressed="false">
-          <i class="fa-solid fa-music"></i>
-        </button>
-        <audio id="ambientMusic" src="Lofi Girl finally stops studying.mp3" preload="none"></audio>
-      </div>
-      <div class="actions">
-        <button type="button" onclick="releaseLantern()" title="Release lantern"><i class="fa-solid fa-star"></i></button>
-        <button type="button" onclick="toggleFullScreen()" title="Fullscreen"><i class="fa-solid fa-expand"></i></button>
-      </div>
-    </div>
-
-    <div id="plantModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="plantTitle" aria-describedby="plantDesc">
-      <div class="modal-content">
-        <h2 id="plantTitle">Plant Growth</h2>
-        <p id="plantDesc">Add a task to grow your plant!</p>
-        <input type="text" id="taskInput" placeholder="Enter a task" />
-        <div class="modal-actions">
-          <button type="button" onclick="addTaskAndClose()">Add Task</button>
-          <button type="button" onclick="toggleModal()">Close</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pomodoro -->
-  <section id="pomodoroPage" class="page hidden" data-route="/pomodoro">
-    <h2>Pomodoro</h2>
-    <div id="timerDisplay">25:00</div>
-    <div id="timerRing"></div>
-    <button id="startPauseBtn" class="pill"><i class="fa-solid fa-play"></i><span>Start</span></button>
-    <button id="resetBtn" class="pill">Reset</button>
-  </section>
-
-  <!-- Short Break -->
-  <section id="shortPage" class="page hidden" data-route="/short">
-    <h2>Short Break</h2>
-    <div id="shortDisplay">05:00</div>
-    <div id="shortRing"></div>
-    <button id="shortStartPause" class="pill"><i class="fa-solid fa-play"></i><span>Start</span></button>
-    <button id="shortReset" class="pill">Reset</button>
-  </section>
-
-  <!-- Long Break -->
-  <section id="longPage" class="page hidden" data-route="/long">
-    <h2>Long Break</h2>
-    <div id="longDisplay">15:00</div>
-    <div id="longRing"></div>
-    <button id="longStartPause" class="pill"><i class="fa-solid fa-play"></i><span>Start</span></button>
-    <button id="longReset" class="pill">Reset</button>
-  </section>
-
-  <!-- Rest -->
-  <section id="restPage" class="page hidden" data-route="/rest">
-    <h2>Rest Mode</h2>
-    <div id="restClock"></div>
-    <button id="openTasksBtn2" class="pill">My Tasks</button>
-  </section>
-
-  <!-- Lantern -->
-  <section id="lanternPage" class="page hidden" data-route="/lantern">
-    <h2>Lantern</h2>
-    <button id="lanternRelease" class="pill">Release Lantern</button>
-  </section>
+    <noscript>
+      <p style="margin-top:16px;">Please enable JavaScript to continue.</p>
+    </noscript>
+  </div>
 </body>
 </html>
