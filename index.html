@@ -1,181 +1,98 @@
 <!DOCTYPE html>
-<html lang="en" id="app">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Virdesk</title>
   <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
-<body id="landingPage">
-  <!-- Landing / Loader -->
-  <section class="page" id="landing" data-route="/">
+<body>
+  <!-- Landing Section -->
+  <section id="landing" class="page active">
     <h1 class="gradient-text">Virdesk</h1>
-    <div class="loader" id="loader" aria-live="polite">
+    <div class="loader" id="loader">
       <span class="dot">●</span>
       <span class="dot">●</span>
       <span class="dot">●</span>
     </div>
-    <noscript><p style="margin-top:16px;">Enable JavaScript to continue.</p></noscript>
   </section>
 
-  <!-- Global Top Bar -->
-  <header class="top-bar global">
-    <a href="#/home" class="brand gradient-text">Virdesk</a>
-    <div class="top-actions">
-      <button class="icon-btn" id="openTasksBtn" title="To-Do List"><i class="fa-solid fa-list-check"></i></button>
-      <button class="icon-btn plant" id="openPlantBtn" title="Plant panel"><i class="fa-solid fa-droplet"></i></button>
+  <!-- Home Section -->
+  <section id="home" class="page">
+    <div class="top-bar">
+      <div class="brand gradient-text">Virdesk</div>
+      <div class="plant" onclick="toggleDropdown()"><i class="fa-solid fa-seedling"></i></div>
+      <div id="plantBoard" class="dropdown"></div>
     </div>
-  </header>
-
-  <!-- Global Bottom Controls -->
-  <footer class="control-bar global">
-    <div class="music">
-      <button id="musicBtn" type="button" aria-controls="ambientMusic" aria-pressed="false" title="Music">
-        <i class="fa-solid fa-music"></i>
-      </button>
-      <audio id="ambientMusic" src="Lofi Girl finally stops studying.mp3" preload="none"></audio>
-    </div>
-    <nav class="nav" aria-label="Primary">
-      <a href="#/rest" title="Rest"><i class="fa-solid fa-cloud"></i></a>
-      <a href="#/home" title="Home"><i class="fa-solid fa-house"></i></a>
-      <a href="#/pomodoro" title="Pomodoro"><i class="fa-solid fa-clock"></i></a>
-    </nav>
-    <div class="actions">
-      <button type="button" id="lanternBtn" title="Release lantern"><i class="fa-solid fa-star"></i></button>
-      <button type="button" id="fullscreenBtn" title="Fullscreen"><i class="fa-solid fa-expand"></i></button>
-    </div>
-  </footer>
-
-  <!-- Home -->
-  <section class="page hidden" id="home" data-route="/home">
     <div class="center-container">
       <div class="center-content">
-        <p id="greeting">Hello!</p>
-        <div id="clock" class="clock">--:-- --</div>
+        <p>Good afternoon!</p>
+        <div id="clock" class="clock"></div>
         <p>Let's set up for today!</p>
+      </div>
+      <div class="nav">
+        <button onclick="navigate('rest')"><i class="fa-solid fa-cloud"></i></button>
+        <button onclick="navigate('home')"><i class="fa-solid fa-house"></i></button>
+        <button onclick="navigate('pomodoro')"><i class="fa-solid fa-clock"></i></button>
       </div>
     </div>
     <div class="quote">
       <p>"Sometimes the smallest step in the right direction ends up being the biggest step of your life."</p>
     </div>
-  </section>
-
-  <!-- Pomodoro -->
-  <section class="page hidden" id="pomodoro" data-route="/pomodoro">
-    <div class="timer-wrap">
-      <div class="ring" id="timerRing" aria-hidden="true"></div>
-      <div class="timer-face">
-        <div class="timer-label">Pomodoro</div>
-        <div class="timer-time" id="timerDisplay">25:00</div>
-        <div class="timer-controls">
-          <button class="pill" id="startPauseBtn"><i class="fa-solid fa-play"></i><span>Start</span></button>
-          <button class="pill" id="resetBtn"><i class="fa-solid fa-rotate-right"></i><span>Reset</span></button>
-        </div>
-        <div class="timer-modes">
-          <a href="#/pomodoro" class="chip active">Pomodoro</a>
-          <a href="#/short" class="chip">Short Break</a>
-          <a href="#/long" class="chip">Long Break</a>
-        </div>
-        <button class="link-btn" id="openTasksBtn2"><i class="fa-solid fa-list-check"></i> Open To-Do</button>
+    <div class="control-bar">
+      <div class="music">
+        <button onclick="playMusic()"><i class="fa-solid fa-music"></i></button>
+        <audio id="ambientMusic" src="Lofi Girl finally stops studying.mp3"></audio>
+      </div>
+      <div class="actions">
+        <button onclick="releaseLantern()"><i class="fa-solid fa-star"></i></button>
+        <button onclick="toggleFullScreen()"><i class="fa-solid fa-expand"></i></button>
+        <button onclick="toggleTodoPopup()"><i class="fa-solid fa-list-check"></i></button>
       </div>
     </div>
   </section>
 
-  <!-- Short Break -->
-  <section class="page hidden" id="short" data-route="/short">
-    <div class="timer-wrap">
-      <div class="ring" id="shortRing" aria-hidden="true"></div>
-      <div class="timer-face">
-        <div class="timer-label">Short Break</div>
-        <div class="timer-time" id="shortDisplay">05:00</div>
-        <div class="timer-controls">
-          <button class="pill" id="shortStartPause"><i class="fa-solid fa-play"></i><span>Start</span></button>
-          <button class="pill" id="shortReset"><i class="fa-solid fa-rotate-right"></i><span>Reset</span></button>
-        </div>
-        <div class="timer-modes">
-          <a href="#/pomodoro" class="chip">Pomodoro</a>
-          <a href="#/short" class="chip active">Short Break</a>
-          <a href="#/long" class="chip">Long Break</a>
-        </div>
-        <button class="link-btn" id="openTasksBtn3"><i class="fa-solid fa-list-check"></i> Open To-Do</button>
-      </div>
-    </div>
+  <!-- Rest Section -->
+  <section id="rest" class="page">
+    <h2>Take a Rest</h2>
+    <p>Relax and recharge with some calm music 🌙</p>
+    <button onclick="navigate('home')">Back to Home</button>
   </section>
 
-  <!-- Long Break -->
-  <section class="page hidden" id="long" data-route="/long">
-    <div class="timer-wrap">
-      <div class="ring" id="longRing" aria-hidden="true"></div>
-      <div class="timer-face">
-        <div class="timer-label">Long Break</div>
-        <div class="timer-time" id="longDisplay">15:00</div>
-        <div class="timer-controls">
-          <button class="pill" id="longStartPause"><i class="fa-solid fa-play"></i><span>Start</span></button>
-          <button class="pill" id="longReset"><i class="fa-solid fa-rotate-right"></i><span>Reset</span></button>
-        </div>
-        <div class="timer-modes">
-          <a href="#/pomodoro" class="chip">Pomodoro</a>
-          <a href="#/short" class="chip">Short Break</a>
-          <a href="#/long" class="chip active">Long Break</a>
-        </div>
-        <button class="link-btn" id="openTasksBtn4"><i class="fa-solid fa-list-check"></i> Open To-Do</button>
-      </div>
-    </div>
+  <!-- Lantern Section -->
+  <section id="lantern" class="page">
+    <h2>Release a Lantern</h2>
+    <p>Write down your feelings and let them go ✨</p>
+    <button onclick="releaseLantern()">Release Lantern</button>
+    <button onclick="navigate('home')">Back to Home</button>
   </section>
 
-  <!-- Rest -->
-  <section class="page hidden" id="rest" data-route="/rest">
-    <div class="center-container">
-      <div class="center-content">
-        <p>Take a breather.</p>
-        <div class="clock" id="restClock">--:-- --</div>
-        <p>Relax and reset.</p>
-      </div>
+  <!-- Pomodoro Section -->
+  <section id="pomodoro" class="page">
+    <h2>Pomodoro Timer</h2>
+    <div class="timer">
+      <span id="timeDisplay">25:00</span>
     </div>
-    <div class="quote"><p>"Rest is part of the work."</p></div>
+    <div class="timer-controls">
+      <button onclick="startPomodoro('work')">Start Work</button>
+      <button onclick="startPomodoro('short')">Short Break</button>
+      <button onclick="startPomodoro('long')">Long Break</button>
+      <button onclick="resetPomodoro()">Reset</button>
+    </div>
+    <button onclick="navigate('home')">Back to Home</button>
   </section>
 
-  <!-- Lantern -->
-  <section class="page hidden" id="lantern" data-route="/lantern">
-    <div class="center-container">
-      <div class="center-content">
-        <p>Release a lantern</p>
-        <button class="pill" id="lanternRelease"><i class="fa-solid fa-star"></i><span>Send a wish</span></button>
-      </div>
-    </div>
-    <div class="quote"><p>"Let it go, let it glow."</p></div>
-  </section>
-
-  <!-- Plant Panel (dropdown board) -->
-  <aside id="plantPanel" class="plant-panel">
-    <button class="close-x" id="closePlantPanel" aria-label="Close">&times;</button>
-    <h2 class="plant-title">Your Plant</h2>
-    <div class="plant-box">
-      <img id="plantImg" src="img/plant-stage1.png" alt="Plant stage" />
-      <div class="plant-progress">
-        <div class="plant-progress-bar"><span id="plantProgress"></span></div>
-        <div class="plant-stats"><span id="completedCount">0</span> tasks completed</div>
-      </div>
-    </div>
-    <button class="link-btn" id="openTasksBtn5"><i class="fa-solid fa-list-check"></i> Manage To-Do</button>
-  </aside>
-
-  <!-- To-Do Modal -->
-  <div id="todoModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="todoTitle">
-    <div class="modal-content todo">
-      <h2 id="todoTitle">To-Do List</h2>
-      <div class="todo-inputs">
-        <input id="todoText" type="text" placeholder="What do you need to do?" />
-        <button id="addTodoBtn" class="pill small"><i class="fa-solid fa-plus"></i><span>Add</span></button>
-      </div>
-      <ul id="todoList" class="todo-list"></ul>
-      <div class="modal-actions">
-        <button id="closeTodoBtn">Close</button>
-        <button id="clearDoneBtn">Clear Completed</button>
-      </div>
+  <!-- To-do List Popup -->
+  <div id="todoPopup" class="modal">
+    <div class="modal-content">
+      <h2>To-Do List</h2>
+      <input type="text" id="taskInput" placeholder="Enter a task">
+      <button onclick="addTask()">Add Task</button>
+      <ul id="taskList"></ul>
+      <button onclick="toggleTodoPopup()">Close</button>
     </div>
   </div>
 </body>
