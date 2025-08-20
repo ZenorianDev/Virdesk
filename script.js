@@ -20,8 +20,12 @@ let tasks = []; // {id, text, done}
 
 // ---------- Init ----------
 document.addEventListener("DOMContentLoaded", () => {
-  // Landing loader -> go home
-  if ($("#loader")) startLoading();
+function startLoading() {
+  const loader = $("#loader");
+  if (!loader) return;
+  loader.style.visibility = "visible";
+  setTimeout(() => { loader.style.visibility = "hidden"; location.hash = "/home"; }, 3000);
+}
 
   // Global controls
   $("#musicBtn")?.addEventListener("click", toggleMusic);

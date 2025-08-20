@@ -10,7 +10,7 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="landingPage">
+  <div id="landingPage" class="landingPage">
     <h1 class="gradient-text">Virdesk</h1>
     <div class="loader" id="loader" aria-live="polite">
       <span class="dot">●</span>
@@ -21,7 +21,7 @@
 
   <main id="home" data-route="/home" class="hidden">
 
-    <div class="top-bar">
+    <div class="top-bar global">
       <div class="brand gradient-text">Virdesk</div>
       <div class="top-actions">
         <button id="openPlantBtn" class="icon-btn" title="Plant panel"><i class="fa-solid fa-droplet"></i></button>
@@ -167,6 +167,7 @@
           <audio id="ambientMusic" src="lofi-girl.mp3" preload="none"></audio>
         </div>
         <div class="actions">
+          <button id="lanternBtn" class="icon-btn" title="Lantern"><i class="fa-solid fa-star"></i></button>
           <button id="fullscreenBtn" type="button" title="Fullscreen"><i class="fa-solid fa-expand"></i></button>
         </div>
       </div>

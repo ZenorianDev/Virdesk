@@ -15,8 +15,8 @@ h1 { font-size: 48px; margin-bottom: 20px; }
   display: inline-block;
 }
 
-/* Pages */
-.page {
+/* Landing page */
+.landingPage {
   position: relative; height: 100vh;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
@@ -25,9 +25,8 @@ h1 { font-size: 48px; margin-bottom: 20px; }
 }
 .hidden { display: none !important; }
 
-/* Landing and Home background */
-#landingPage .page { background: #F5E8C7; }
-#home.page, #home .page {
+/*Home background */
+#home {
   background:
     linear-gradient(to top, rgb(210,153,194) 0%, rgb(254,249,215) 100%),
     url('petals.gif');
