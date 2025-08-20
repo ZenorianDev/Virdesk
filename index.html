@@ -52,6 +52,11 @@
     <!-- POMODORO -->
     <section id="pomodoroPage" class="page hidden" data-route="/pomodoro">
       <div class="center-container">
+        <div class="timer-modes">
+          <a href="#/pomodoro" class="chip active">Pomodoro</a>
+          <a href="#/short" class="chip">Short Break</a>
+          <a href="#/long" class="chip">Long Break</a>
+        </div>
         <div class="timer-wrap">
           <div class="ring" id="timerRing" style="--p: 0;"></div>
           <div class="timer-face">
@@ -61,11 +66,6 @@
               <button id="startPauseBtn" class="pill"><i class="fa-solid fa-play"></i><span>Start</span></button>
               <button id="resetBtn" class="pill"><i class="fa-solid fa-rotate-left"></i><span>Reset</span></button>
             </div>
-            <div class="timer-modes">
-              <a href="#/pomodoro" class="chip active">Pomodoro</a>
-              <a href="#/short" class="chip">Short Break</a>
-              <a href="#/long" class="chip">Long Break</a>
-            </div>
           </div>
         </div>
       </div>
@@ -74,6 +74,11 @@
     <!-- SHORT BREAK -->
     <section id="shortPage" class="page hidden" data-route="/short">
       <div class="center-container">
+        <div class="timer-modes">
+          <a href="#/pomodoro" class="chip">Pomodoro</a>
+          <a href="#/short" class="chip active">Short Break</a>
+          <a href="#/long" class="chip">Long Break</a>
+        </div>
         <div class="timer-wrap">
           <div class="ring" id="shortRing" style="--p: 0;"></div>
           <div class="timer-face">
@@ -83,11 +88,6 @@
               <button id="shortStartPause" class="pill"><i class="fa-solid fa-play"></i><span>Start</span></button>
               <button id="shortReset" class="pill"><i class="fa-solid fa-rotate-left"></i><span>Reset</span></button>
             </div>
-            <div class="timer-modes">
-              <a href="#/pomodoro" class="chip">Pomodoro</a>
-              <a href="#/short" class="chip active">Short Break</a>
-              <a href="#/long" class="chip">Long Break</a>
-            </div>
           </div>
         </div>
       </div>
@@ -96,6 +96,11 @@
     <!-- LONG BREAK -->
     <section id="longPage" class="page hidden" data-route="/long">
       <div class="center-container">
+        <div class="timer-modes">
+            <a href="#/pomodoro" class="chip">Pomodoro</a>
+            <a href="#/short" class="chip">Short Break</a>
+            <a href="#/long" class="chip active">Long Break</a>
+        </div>
         <div class="timer-wrap">
           <div class="ring" id="longRing" style="--p: 0;"></div>
           <div class="timer-face">
@@ -104,11 +109,6 @@
             <div class="timer-controls">
               <button id="longStartPause" class="pill"><i class="fa-solid fa-play"></i><span>Start</span></button>
               <button id="longReset" class="pill"><i class="fa-solid fa-rotate-left"></i><span>Reset</span></button>
-            </div>
-            <div class="timer-modes">
-              <a href="#/pomodoro" class="chip">Pomodoro</a>
-              <a href="#/short" class="chip">Short Break</a>
-              <a href="#/long" class="chip active">Long Break</a>
             </div>
           </div>
         </div>
