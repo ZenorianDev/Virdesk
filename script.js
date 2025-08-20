@@ -20,12 +20,21 @@ let tasks = []; // {id, text, done}
 
 // ---------- Init ----------
 document.addEventListener("DOMContentLoaded", () => {
-function startLoading() {
-  const loader = $("#loader");
-  if (!loader) return;
-  loader.style.visibility = "visible";
-  setTimeout(() => { loader.style.visibility = "hidden"; location.hash = "/home"; }, 3000);
-}
+  // Landing page
+  if (location.hash === "" || location.hash === "#/" || location.hash === "#") {
+    const loader = $("#loader");
+    if (loader) {
+      loader.style.visibility = "visible";
+      setTimeout(() => {
+        $("#landingPage").classList.add("hidden");
+        $("#home").classList.remove("hidden");
+        location.hash = "/home";
+      }, 3000);
+    }
+  } else {
+    $("#landingPage").classList.add("hidden");
+    $("#home").classList.remove("hidden");
+  }
 
   // Global controls
   $("#musicBtn")?.addEventListener("click", toggleMusic);
@@ -37,12 +46,9 @@ function startLoading() {
   $("#openPlantBtn")?.addEventListener("click", () => $("#plantPanel").classList.toggle("open"));
   $("#closePlantPanel")?.addEventListener("click", () => $("#plantPanel").classList.remove("open"));
 
-  // To-Do modal (openers)
-  ["#openTasksBtn","#openTasksBtn2","#openTasksBtn3","#openTasksBtn4","#openTasksBtn5","#openTasksBtn6"]
-    .forEach(id => $(id)?.addEventListener("click", openTodo));
+  // To-Do modal
+  $("#openTasksBtn")?.addEventListener("click", openTodo);
   $("#closeTodoBtn")?.addEventListener("click", closeTodo);
-
-  // To-Do actions
   $("#addTodoBtn")?.addEventListener("click", addTodoFromInput);
   $("#todoText")?.addEventListener("keydown", (e) => { if (e.key === "Enter") addTodoFromInput(); });
   $("#clearDoneBtn")?.addEventListener("click", clearCompleted);
@@ -53,7 +59,7 @@ function startLoading() {
   updatePlant();
 
   // Clock + greeting
-  if ($("#clock")) {
+  if ($("#clock") || $("#restClock")) {
     updateClock();
     setInterval(updateClock, 1000);
   }
@@ -68,13 +74,14 @@ function startLoading() {
 // ---------- Routing ----------
 function navigate(path) {
   if (!ROUTES.includes(path)) path = "/home";
-  if (location.hash !== "#" + path) location.hash = path;
+  if (location.hash !== `#${path}`) location.hash = path;
   else handleRoute();
 }
+
 function handleRoute() {
   const path = (location.hash.replace(/^#/, "") || "/home");
 
-  // Show/hide sections (only .page sections in main)
+  // Show/hide sections
   $$(".page").forEach(sec => {
     const r = sec.getAttribute("data-route");
     sec.classList.toggle("hidden", r !== path);
@@ -92,24 +99,17 @@ function handleRoute() {
   else if (path === "/long") setupTimer("long");
 }
 
-// ---------- Landing ----------
-function startLoading() {
-  const loader = $("#loader");
-  if (!loader) return;
-  loader.style.visibility = "visible";
-  setTimeout(() => { loader.style.visibility = "hidden"; location.href = "home.html#%2Fhome"; }, 3000);
-}
-
 // ---------- Clock / Greeting ----------
 function updateClock() {
   const now = new Date();
-  const clockEls = ["#clock","#restClock"].map(sel => $(sel)).filter(Boolean);
+  const clockEls = ["#clock", "#restClock"].map(sel => $(sel)).filter(Boolean);
   let hrs = now.getHours();
   const mins = pad2(now.getMinutes());
   const ampm = hrs >= 12 ? "PM" : "AM";
   hrs = hrs % 12 || 12;
   clockEls.forEach(el => el.textContent = `${pad2(hrs)}:${mins} ${ampm}`);
 }
+
 function getGreeting() {
   const h = new Date().getHours();
   if (h < 12) return "Good morning!";
@@ -119,15 +119,16 @@ function getGreeting() {
 
 // ---------- Music ----------
 function toggleMusic() {
-  const audio = $("#ambientMusic");
+  const audio = $("#ambientMusic") || new Audio("ambient.mp3"); // Fallback audio (adjust path as needed)
+  audio.id = "ambientMusic";
   const btn = $("#musicBtn");
   if (!audio || !btn) return;
   if (audio.paused) {
-    audio.play().then(() => btn.setAttribute("aria-pressed","true"))
+    audio.play().then(() => btn.setAttribute("aria-pressed", "true"))
       .catch(err => console.log("Audio play failed:", err));
   } else {
     audio.pause();
-    btn.setAttribute("aria-pressed","false");
+    btn.setAttribute("aria-pressed", "false");
   }
 }
 
@@ -224,7 +225,7 @@ function updatePlant() {
 
 // ---------- Timer ----------
 function setupTimer(type) {
-  // tear down any existing timer
+  // Tear down any existing timer
   if (activeTimer?.intervalId) clearInterval(activeTimer.intervalId);
 
   const total = (type === "pomodoro" ? DURATIONS.pomodoro : type === "short" ? DURATIONS.short : DURATIONS.long);
@@ -232,9 +233,9 @@ function setupTimer(type) {
 
   // Bind controls per type
   const ids = {
-    pomodoro: { display:"#timerDisplay", ring:"#timerRing", start:"#startPauseBtn", reset:"#resetBtn" },
-    short:    { display:"#shortDisplay", ring:"#shortRing", start:"#shortStartPause", reset:"#shortReset" },
-    long:     { display:"#longDisplay",  ring:"#longRing",  start:"#longStartPause", reset:"#longReset" },
+    pomodoro: { display: "#timerDisplay", ring: "#timerRing", start: "#startPauseBtn", reset: "#resetBtn" },
+    short: { display: "#shortDisplay", ring: "#shortRing", start: "#shortStartPause", reset: "#shortReset" },
+    long: { display: "#longDisplay", ring: "#longRing", start: "#longStartPause", reset: "#longReset" },
   }[type];
 
   // Reset UI
@@ -302,18 +303,25 @@ function setDisplay(sel, secs) {
   const m = Math.floor(secs / 60), s = secs % 60;
   el.textContent = `${pad2(m)}:${pad2(s)}`;
 }
-function setRing(sel, pct) { const r = $(sel); if (r) r.style.setProperty("--p", String(pct)); }
+
+function setRing(sel, pct) {
+  const r = $(sel);
+  if (r) r.style.setProperty("--p", String(pct));
+}
 
 function ding() {
   try {
-    // Soft beep using Web Audio (no external file needed)
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const o = ctx.createOscillator(); const g = ctx.createGain();
-    o.type = "sine"; o.frequency.value = 880; // A5
-    o.connect(g); g.connect(ctx.destination);
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.type = "sine";
+    o.frequency.value = 880; // A5
+    o.connect(g);
+    g.connect(ctx.destination);
     g.gain.setValueAtTime(0.001, ctx.currentTime);
     g.gain.exponentialRampToValueAtTime(0.2, ctx.currentTime + 0.02);
     g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.6);
-    o.start(); o.stop(ctx.currentTime + 0.6);
+    o.start();
+    o.stop(ctx.currentTime + 0.6);
   } catch (e) { /* ignore */ }
 }
