@@ -218,8 +218,8 @@ function updatePlant() {
   const img = $("#plantImg");
   if (!img) return;
   let stage = "assets/plant-stage1.png";
-  if (completed >= 7) stage = "assets/plant-stage3.png";
-  else if (completed >= 4) stage = "assets/plant-stage2.png";
+  if (completed >= 7) stage = "assets/plant-stage3.gif";
+  else if (completed >= 4) stage = "assets/plant-stage2.gif";
   img.src = stage;
 }
 
