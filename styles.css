@@ -63,7 +63,7 @@ h2 {
 .loader {
   width: 180px; 
   height: 150px;
-  background-image: url('landing.gif');
+  background-image: url('/assets/landing.gif');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

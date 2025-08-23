@@ -119,7 +119,7 @@ function getGreeting() {
 
 // ---------- Music ----------
 function toggleMusic() {
-  const audio = $("#ambientMusic") || new Audio("ambient.mp3"); // Fallback audio (adjust path as needed)
+  const audio = $("#ambientMusic") || new Audio("assets/Lofi Girl finally stops studying.mp3"); // Fallback audio (adjust path as needed)
   audio.id = "ambientMusic";
   const btn = $("#musicBtn");
   if (!audio || !btn) return;
@@ -217,9 +217,9 @@ function updatePlant() {
 
   const img = $("#plantImg");
   if (!img) return;
-  let stage = "img/plant-stage1.png";
-  if (completed >= 7) stage = "img/plant-stage3.png";
-  else if (completed >= 4) stage = "img/plant-stage2.png";
+  let stage = "assets/plant-stage1.png";
+  if (completed >= 7) stage = "assets/plant-stage3.png";
+  else if (completed >= 4) stage = "assets/plant-stage2.png";
   img.src = stage;
 }
 
