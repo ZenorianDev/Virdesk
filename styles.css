@@ -20,7 +20,7 @@ h2 {
 
 .gradient-text {
   background: linear-gradient(90deg, #8B4513, #D2B48C);
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 48px;
   margin: 0;
