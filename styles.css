@@ -21,12 +21,8 @@ h2 {
 .gradient-text {
   background: linear-gradient(90deg, #8B4513, #D2B48C);
   background-clip: text;
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-decoration: none;
-  display: inline-block;
   font-size: 48px;
-  font-weight: bold;
   margin: 0;
 }
 
