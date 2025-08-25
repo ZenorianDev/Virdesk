@@ -93,7 +93,7 @@ function handleRoute() {
     ch.classList.toggle("active", href === `#${path}`);
   });
 
-  // Setup timer UI (don’t auto-start)
+  // Setup timer UI (does not auto-start)
   if (path === "/pomodoro") setupTimer("pomodoro");
   else if (path === "/short") setupTimer("short");
   else if (path === "/long") setupTimer("long");
@@ -119,7 +119,7 @@ function getGreeting() {
 
 // ---------- Music ----------
 function toggleMusic() {
-  const audio = $("#ambientMusic") || new Audio("assets/Lofi Girl finally stops studying.mp3"); // Fallback audio (adjust path as needed)
+  const audio = $("#ambientMusic") || new Audio("assets/Lofi Girl finally stops studying.mp3"); // Fallback audio file
   audio.id = "ambientMusic";
   const btn = $("#musicBtn");
   if (!audio || !btn) return;
@@ -225,13 +225,13 @@ function updatePlant() {
 
 // ---------- Timer ----------
 function setupTimer(type) {
-  // Tear down any existing timer
+  // Tearing down any existing timer
   if (activeTimer?.intervalId) clearInterval(activeTimer.intervalId);
 
   const total = (type === "pomodoro" ? DURATIONS.pomodoro : type === "short" ? DURATIONS.short : DURATIONS.long);
   activeTimer = { type, total, remaining: total, running: false, intervalId: null };
 
-  // Bind controls per type
+  // Binding controls per type
   const ids = {
     pomodoro: { display: "#timerDisplay", ring: "#timerRing", start: "#startPauseBtn", reset: "#resetBtn" },
     short: { display: "#shortDisplay", ring: "#shortRing", start: "#shortStartPause", reset: "#shortReset" },
