@@ -8,6 +8,13 @@ body {
   overflow: hidden;
 }
 
+@font-face {
+  font-family: 'Righteous';
+  src: url('assets/fonts/Righteous-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 h1 { 
   font-size: 48px; 
   margin-bottom: 0;
