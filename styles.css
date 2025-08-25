@@ -376,6 +376,7 @@ button {
   color: #2d2d2d;
   border: none;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .pill:hover { 
