@@ -194,7 +194,7 @@ function renderTodos() {
       <input type="checkbox" ${t.done ? "checked" : ""} aria-label="Mark done">
       <div class="todo-text">${escapeHtml(t.text)}</div>
       <div class="todo-actions">
-        <button class="pill small remove" aria-label="Remove task"><i class="fa-solid fa-trash"></i></button>
+        <button class="pill small remove" aria-label="Remove task">🗑</button>
       </div>
     `;
     li.querySelector("input").addEventListener("change", () => toggleTodo(t.id));
@@ -244,7 +244,7 @@ function setupTimer(type) {
   const startBtn = $(ids.start);
   const resetBtn = $(ids.reset);
   if (startBtn) {
-    startBtn.innerHTML = `<i class="fa-solid fa-play"></i><span>Start</span>`;
+    startBtn.innerHTML = `▶️ <span>Start</span>`;
     startBtn.onclick = () => toggleTimer(ids);
   }
   if (resetBtn) resetBtn.onclick = () => resetTimer(ids);
@@ -263,7 +263,7 @@ function startTimer(ids) {
   if (!activeTimer || activeTimer.running) return;
   activeTimer.running = true;
   const btn = $(ids.start);
-  if (btn) btn.innerHTML = `<i class="fa-solid fa-pause"></i><span>Pause</span>`;
+  if (btn) btn.innerHTML = `⏸ <span>Pause</span>`;
   activeTimer.intervalId = setInterval(() => {
     activeTimer.remaining = Math.max(0, activeTimer.remaining - 1);
     setDisplay(ids.display, activeTimer.remaining);
@@ -272,7 +272,7 @@ function startTimer(ids) {
     if (activeTimer.remaining <= 0) {
       clearInterval(activeTimer.intervalId);
       activeTimer.running = false;
-      if (btn) btn.innerHTML = `<i class="fa-solid fa-play"></i><span>Start</span>`;
+      if (btn) btn.innerHTML = `▶️ <span>Start</span>`;
       ding();
     }
   }, 1000);
@@ -283,7 +283,7 @@ function pauseTimer(ids) {
   activeTimer.running = false;
   clearInterval(activeTimer.intervalId);
   const btn = $(ids.start);
-  if (btn) btn.innerHTML = `<i class="fa-solid fa-play"></i><span>Resume</span>`;
+  if (btn) btn.innerHTML = `▶️ <span>Resume</span>`;
 }
 
 function resetTimer(ids) {
@@ -294,7 +294,7 @@ function resetTimer(ids) {
   setDisplay(ids.display, activeTimer.total);
   setRing(ids.ring, 0);
   const btn = $(ids.start);
-  if (btn) btn.innerHTML = `<i class="fa-solid fa-play"></i><span>Start</span>`;
+  if (btn) btn.innerHTML = `▶️ <span>Start</span>`;
 }
 
 function setDisplay(sel, secs) {
