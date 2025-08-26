@@ -13,7 +13,7 @@ const store = {
 };
 
 // ---------- App State ----------
-const ROUTES = ["/", "/home", "/pomodoro", "/short", "/long", "/rest", "/lantern"];
+const ROUTES = ["/", "/home", "/pomodoro", "/short", "/long", "/rest"];
 const DURATIONS = { pomodoro: 25*60, short: 5*60, long: 15*60 }; // seconds
 let activeTimer = null; // {type, total, remaining, running, intervalId}
 let tasks = []; // {id, text, done}
@@ -39,8 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Global controls
   $("#musicBtn")?.addEventListener("click", toggleMusic);
   $("#fullscreenBtn")?.addEventListener("click", toggleFullScreen);
-  $("#lanternBtn")?.addEventListener("click", () => navigate("/lantern"));
-  $("#lanternRelease")?.addEventListener("click", releaseLantern);
 
   // Plant panel
   $("#openPlantBtn")?.addEventListener("click", () => $("#plantPanel").classList.toggle("open"));
@@ -139,12 +137,6 @@ function toggleFullScreen() {
   } else {
     document.exitFullscreen?.();
   }
-}
-
-// ---------- Lantern ----------
-function releaseLantern() {
-  const feelings = prompt("Write your feelings for the lantern:");
-  if (feelings) alert(`Lantern released with feelings: ${feelings}`);
 }
 
 // ---------- To-Do ----------
