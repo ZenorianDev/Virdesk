@@ -117,7 +117,7 @@ function getGreeting() {
 
 // ---------- Music ----------
 function toggleMusic() {
-  const audio = $("#ambientMusic") || new Audio("assets/Lofi Girl finally stops studying.mp3"); // Fallback audio file
+  const audio = $("#ambientMusic") || new Audio("assets/Lofi Girl finally stops studying.mp3");
   audio.id = "ambientMusic";
   const btn = $("#musicBtn");
   if (!audio || !btn) return;
