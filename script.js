@@ -236,7 +236,7 @@ function setupTimer(type) {
   const startBtn = $(ids.start);
   const resetBtn = $(ids.reset);
   if (startBtn) {
-    startBtn.innerHTML = `▶ <span>Start</span>`;
+    startBtn.innerHTML = `▶️ <span>Start</span>`;
     startBtn.onclick = () => toggleTimer(ids);
   }
   if (resetBtn) resetBtn.onclick = () => resetTimer(ids);
@@ -264,7 +264,7 @@ function startTimer(ids) {
     if (activeTimer.remaining <= 0) {
       clearInterval(activeTimer.intervalId);
       activeTimer.running = false;
-      if (btn) btn.innerHTML = `▶ <span>Start</span>`;
+      if (btn) btn.innerHTML = `▶️ <span>Start</span>`;
       ding();
     }
   }, 1000);
@@ -275,7 +275,7 @@ function pauseTimer(ids) {
   activeTimer.running = false;
   clearInterval(activeTimer.intervalId);
   const btn = $(ids.start);
-  if (btn) btn.innerHTML = `▶ <span>Resume</span>`;
+  if (btn) btn.innerHTML = `▶️ <span>Resume</span>`;
 }
 
 function resetTimer(ids) {
@@ -286,7 +286,7 @@ function resetTimer(ids) {
   setDisplay(ids.display, activeTimer.total);
   setRing(ids.ring, 0);
   const btn = $(ids.start);
-  if (btn) btn.innerHTML = `▶ <span>Start</span>`;
+  if (btn) btn.innerHTML = `▶️ <span>Start</span>`;
 }
 
 function setDisplay(sel, secs) {
