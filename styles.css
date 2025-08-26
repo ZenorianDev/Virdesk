@@ -114,6 +114,16 @@ h2 {
   background: #E0D4B3;
 }
 
+/* Rest */
+.kofi {
+  width: 180px; 
+  height: 150px;
+  background-image: url('/assets/kofi.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 /* Bottom controls (global) */
 .control-bar.global {
   position: fixed;
